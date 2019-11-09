@@ -19,7 +19,6 @@ public class OnTheMapAPI {
         static var uniqueKey = ""
         static var objectId = ""
         static var didPost = false
-        
     }
     
     
