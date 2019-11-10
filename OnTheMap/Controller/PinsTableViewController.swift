@@ -17,6 +17,7 @@ class PinsTableViewController: UITableViewController {
         OnTheMapAPI.getStudentLocation(completion: getStudentLocationHelper(studentLocations:error:))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addPin))
         navigationItem.title = "Students Info"
+        print(studentLocations.count)
         
     }
     
@@ -37,6 +38,7 @@ class PinsTableViewController: UITableViewController {
                 self.studentLocations = studentLocations
                 self.studentLocations.append(contentsOf: AddedStudent.students)
                 self.tableView.reloadData()
+                print(studentLocations.count)
             }
         }
     }
