@@ -20,6 +20,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addPin))
         navigationItem.title = "Students Location"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
+    }
+    
+    @objc func logout() {
+        OnTheMapAPI.logout() { success, error in
+            if success {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                let alertVC = UIAlertController(title: "Logout Failed", message: error!.localizedDescription, preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.show(alertVC, sender: nil)
+            }
+        }
     }
     
     @objc func addPin() {

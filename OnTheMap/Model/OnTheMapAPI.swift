@@ -27,6 +27,7 @@ public class OnTheMapAPI {
         case session
         case postStudentLocation
         case getUserInfo
+        case logout
         
         var stringValue: String {
             switch self {
@@ -38,6 +39,8 @@ public class OnTheMapAPI {
                 return "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100&order=-updatedAt"
             case .getUserInfo:
                 return "https://onthemap-api.udacity.com/v1/users/\(UserData.uniqueKey)"
+            case .logout:
+                return "https://onthemap-api.udacity.com/v1/session"
             }
         }
         
@@ -120,4 +123,33 @@ public class OnTheMapAPI {
 //        task.resume()
 //    }
     
+    class func logout(completion: @escaping (Bool, Error?) -> Void) {
+        var request = URLRequest(url: EndPoints.logout.url)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+          if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+          request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(false, error!)
+                }
+                return
+            }
+            // uncomment to check response
+//          let range = 5..<data.count
+//          let newData = data.subdata(in: range)
+//          print(String(data: newData, encoding: .utf8)!)
+            DispatchQueue.main.async {
+                completion(true, nil)
+            }
+        }
+        task.resume()
+}
 }
