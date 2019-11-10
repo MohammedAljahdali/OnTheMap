@@ -16,6 +16,8 @@ class AddPinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationTextField.delegate = self
+        mediaTextField.delegate = self
         locationTextField.text = ""
         mediaTextField.text = ""
     }

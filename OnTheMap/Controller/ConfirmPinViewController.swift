@@ -12,6 +12,7 @@ import MapKit
 class ConfirmPinViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var gecodingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,7 @@ class ConfirmPinViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        gecodingIndicator.startAnimating()
         showLocation()
     }
     
@@ -27,10 +29,14 @@ class ConfirmPinViewController: UIViewController {
     }
     
     @IBAction func submitStudentInformation(_ sender: Any) {
-        OnTheMapAPI.postStudentLocation { (success, error) in
+        OnTheMapAPI.postStudentLocation { (success, error, message) in
             DispatchQueue.main.async {
                 if success {
                     self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                } else {
+                    let alertVC = UIAlertController(title: "Submit Failed", message: message, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.show(alertVC, sender: nil)
                 }
             }
         }
@@ -47,7 +53,10 @@ extension ConfirmPinViewController: MKMapViewDelegate {
         studentLocation.coordinate = coordinate
         studentLocation.title = "\(OnTheMapAPI.UserData.firstName) \(OnTheMapAPI.UserData.lastName)"
         studentLocation.subtitle = OnTheMapAPI.UserData.mediaURL
+        let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(region, animated: true)
         mapView.addAnnotation(studentLocation)
+        gecodingIndicator.stopAnimating()
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

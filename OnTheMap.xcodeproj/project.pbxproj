@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7354D6F32375A1100013474A /* PostingStudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354D6F22375A1100013474A /* PostingStudentResponse.swift */; };
+		7354D6F523786D070013474A /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354D6F423786D070013474A /* TextFieldExtensions.swift */; };
 		739ACF5123709BFE0014D875 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739ACF5023709BFE0014D875 /* SessionResponse.swift */; };
 		739ACF532370A2FE0014D875 /* PinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739ACF522370A2FE0014D875 /* PinsTableViewController.swift */; };
 		739ACF57237323B00014D875 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739ACF56237323B00014D875 /* MapViewController.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		7354D6F22375A1100013474A /* PostingStudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingStudentResponse.swift; sourceTree = "<group>"; };
+		7354D6F423786D070013474A /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
 		739ACF5023709BFE0014D875 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		739ACF522370A2FE0014D875 /* PinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsTableViewController.swift; sourceTree = "<group>"; };
 		739ACF56237323B00014D875 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				739ACF56237323B00014D875 /* MapViewController.swift */,
 				739ACF5823745AFE0014D875 /* AddPinViewController.swift */,
 				739ACF5A237460D80014D875 /* ConfirmPinViewController.swift */,
+				7354D6F423786D070013474A /* TextFieldExtensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				739ACF61237597F60014D875 /* AddedStudent.swift in Sources */,
 				73E4203023707B430008EC40 /* LoginViewController.swift in Sources */,
 				73E4202C23707B430008EC40 /* AppDelegate.swift in Sources */,
+				7354D6F523786D070013474A /* TextFieldExtensions.swift in Sources */,
 				739ACF57237323B00014D875 /* MapViewController.swift in Sources */,
 				739ACF5B237460D80014D875 /* ConfirmPinViewController.swift in Sources */,
 				73E4202E23707B430008EC40 /* SceneDelegate.swift in Sources */,

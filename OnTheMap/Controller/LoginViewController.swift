@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry = true
     }
     
@@ -52,6 +54,4 @@ class LoginViewController: UIViewController {
     
 
 }
-
-
 

@@ -90,18 +90,18 @@ public class OnTheMapAPI {
         task.resume()
     }
     
-    class func postStudentLocation(completion: @escaping (Bool, Error?) -> Void) {
+    class func postStudentLocation(completion: @escaping (Bool, Error?, String) -> Void) {
         var request = URLRequest(url: EndPoints.postStudentLocation.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = "{\"uniqueKey\": \"\(UserData.uniqueKey)\", \"firstName\": \"\(UserData.firstName)\", \"lastName\": \"\(UserData.lastName)\",\"mapString\": \"\(UserData.mapString)\", \"mediaURL\": \"\(UserData.mediaURL)\",\"latitude\": \(UserData.latitude), \"longitude\": \(UserData.longitude)}".data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {completion(false, error); return}
+            guard let data = data else {completion(false, error, error?.localizedDescription ?? ""); return}
             do {
             let object = try JSONDecoder().decode(PostingStudentResponse.self, from: data)
                 AddedStudent.students.append(StudentLocation(firstName: UserData.firstName, lastName: UserData.lastName, longitude: UserData.longitude, latitude: UserData.latitude, mapString: UserData.mapString, mediaURL: UserData.mediaURL, uniqueKey: UserData.uniqueKey, objectId: object.objectId))
-                completion(true,nil)
-            } catch {completion(false, error)}
+                completion(true,nil, "")
+            } catch {completion(false, error, error.localizedDescription)}
         }
         task.resume()
     }
