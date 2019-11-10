@@ -40,8 +40,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.studentLocations.append(contentsOf: AddedStudent.students)
                 self.setStudentLocations()
             }
+        } else {
+                let alertVC = UIAlertController(title: "Network Issue", message: "Check Your Connection", preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.show(alertVC, sender: nil)
+            }
         }
-    }
     
     func setStudentLocations() {
         var studentAnnotations = [MKPointAnnotation]()
@@ -63,7 +67,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.isEnabled = true
             pinView!.canShowCallout = true
-//            pinView!.pinTintColor = .red
+            pinView!.pinTintColor = .red
             pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         else {

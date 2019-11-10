@@ -35,7 +35,7 @@ public class OnTheMapAPI {
             case .session:
                 return "https://onthemap-api.udacity.com/v1/session"
             case .postStudentLocation:
-                return "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100&order=updatedAt"
+                return "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100&order=-updatedAt"
             case .getUserInfo:
                 return "https://onthemap-api.udacity.com/v1/users/\(UserData.uniqueKey)"
             }

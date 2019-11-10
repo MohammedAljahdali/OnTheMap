@@ -17,8 +17,6 @@ class PinsTableViewController: UITableViewController {
         OnTheMapAPI.getStudentLocation(completion: getStudentLocationHelper(studentLocations:error:))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addPin))
         navigationItem.title = "Students Info"
-        print(studentLocations.count)
-        
     }
     
     @objc func addPin() {
@@ -38,8 +36,11 @@ class PinsTableViewController: UITableViewController {
                 self.studentLocations = studentLocations
                 self.studentLocations.append(contentsOf: AddedStudent.students)
                 self.tableView.reloadData()
-                print(studentLocations.count)
             }
+        } else {
+            let alertVC = UIAlertController(title: "Network Issue", message: "Check Your Connection", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.show(alertVC, sender: nil)
         }
     }
 
@@ -57,6 +58,11 @@ class PinsTableViewController: UITableViewController {
         cell.textLabel?.text = "\(row.firstName) \(row.lastName)"
         cell.detailTextLabel?.text = "\(row.mapString)"
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let url = URL(string: studentLocations[indexPath.row].mediaURL)
+        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
     }
 
 
