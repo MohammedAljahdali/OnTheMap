@@ -61,6 +61,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     
     func setStudentLocations() {
+        mapView.removeAnnotations(mapView.annotations)
         var studentAnnotations = [MKPointAnnotation]()
         for dictionary in studentLocations {
                     let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(dictionary.latitude), longitude: CLLocationDegrees(dictionary.longitude))

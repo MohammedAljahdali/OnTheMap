@@ -13,6 +13,7 @@ class AddPinViewController: UIViewController {
 
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var mediaTextField: UITextField!
+    @IBOutlet weak var geocodingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +36,11 @@ class AddPinViewController: UIViewController {
                 showAddPinFailure(message: "Fill the text fields!")
                 return
             }
+        geocodingIndicator.startAnimating()
         getCoordinateFrom(address: locationTextField.text ?? "") { (coordinate, error) in
             guard let coordinate = coordinate else {
                 DispatchQueue.main.async {
+                    self.geocodingIndicator.stopAnimating()
                     self.showAddPinFailure(message: "Enter a correct location!")
                 }
                 return
@@ -49,6 +52,7 @@ class AddPinViewController: UIViewController {
                 OnTheMapAPI.UserData.mediaURL = media
                 print(media+location)
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "confirmPin") as! ConfirmPinViewController
+                self.geocodingIndicator.stopAnimating()
                 self.present(vc, animated: true, completion: nil)
             }
         }

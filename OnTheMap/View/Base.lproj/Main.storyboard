@@ -82,7 +82,6 @@
         <!--Pins Table View Controller-->
         <scene sceneID="PSs-G1-ZP1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dEc-8i-rFz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="tableView" id="Ew8-FT-SX4" customClass="PinsTableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3TJ-5p-5Xo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -121,6 +120,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="XwA-VJ-dYC"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dEc-8i-rFz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="193" y="698"/>
         </scene>
@@ -169,19 +169,25 @@
                                     <action selector="cancel:" destination="TvY-CF-FMt" eventType="touchUpInside" id="Uxn-Sg-zUy"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="TPZ-BB-V1Y">
+                                <rect key="frame" x="197" y="418.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="qCs-BV-ncC" firstAttribute="top" secondItem="21Y-ce-o9o" secondAttribute="top" id="90h-0Y-qCF"/>
+                            <constraint firstItem="TPZ-BB-V1Y" firstAttribute="centerY" secondItem="21Y-ce-o9o" secondAttribute="centerY" id="LAj-K0-jNb"/>
                             <constraint firstItem="xav-2V-ihy" firstAttribute="centerX" secondItem="21Y-ce-o9o" secondAttribute="centerX" id="PqS-CP-MwE"/>
                             <constraint firstItem="xav-2V-ihy" firstAttribute="centerY" secondItem="21Y-ce-o9o" secondAttribute="centerY" id="Qs7-za-YU6"/>
                             <constraint firstItem="21Y-ce-o9o" firstAttribute="trailing" secondItem="qCs-BV-ncC" secondAttribute="trailing" constant="20" id="r5a-pB-eID"/>
+                            <constraint firstItem="TPZ-BB-V1Y" firstAttribute="centerX" secondItem="21Y-ce-o9o" secondAttribute="centerX" id="vj1-fC-rPy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="21Y-ce-o9o"/>
                     </view>
                     <navigationItem key="navigationItem" id="1zX-pX-Lgb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="geocodingIndicator" destination="TPZ-BB-V1Y" id="xsj-RV-sbQ"/>
                         <outlet property="locationTextField" destination="lnh-Tg-rY8" id="KXk-GL-fDS"/>
                         <outlet property="mediaTextField" destination="i15-cz-veq" id="Pp4-Fd-l2C"/>
                     </connections>
