@@ -136,16 +136,12 @@ public class OnTheMapAPI {
         }
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-            guard let data = data else {
+            guard let _ = data else {
                 DispatchQueue.main.async {
                     completion(false, error!)
                 }
                 return
             }
-            // uncomment to check response
-//          let range = 5..<data.count
-//          let newData = data.subdata(in: range)
-//          print(String(data: newData, encoding: .utf8)!)
             DispatchQueue.main.async {
                 completion(true, nil)
             }
